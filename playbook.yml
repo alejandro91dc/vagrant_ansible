@@ -1,0 +1,16 @@
+---
+- hosts: all
+  sudo: True
+  user: vagrant
+  tasks:
+  - name: install packages
+    apt: name={{item}} state=latest update_cache=yes
+    with_items:
+    - nodejs
+    - npm
+ 
+  - name: install npm packages    
+    npm: name={{item}} state=latest global=yes
+    with_items:
+    - express
+    - mongodb
